@@ -205,7 +205,8 @@ def resumen(prestamos):
 
 
 # EJECUCIÓN
-cargar_datos()
-nombreCompleto = inicio()
-menu()
-resumen(prestamos)
+if __name__ == "__main__":
+    cargar_datos()
+    nombreCompleto = inicio()
+    menu()
+    resumen(prestamos)
