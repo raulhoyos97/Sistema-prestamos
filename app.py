@@ -34,5 +34,17 @@ def ver_vencidos():
             html += f"<p>Cliente ID: {prestamo['id_cliente']} | Monto: ${prestamo['monto']} | Venció: {prestamo['vencimiento']}</p>"
     return html
 
+
+@app.route("/resumen")
+def ver_resumen():
+    html = "<h1>Resumen</h1>"
+    total = 0
+    for prestamo in prestamos.prestamos:
+        html += f"<p>{prestamo['id_cliente']} - monto: {prestamo['monto']}</p>"
+        total += prestamo["total"]
+    html += f"<h2>Total general: ${total}</h2>"
+    return html
+
+
 if __name__ == "__main__":
     app.run(debug=True)
