@@ -8,7 +8,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return "Hola, este es mi sistema de préstamos!"
+    return """
+    <h1>Sistema de Préstamos</h1>
+    <a href="/clientes">Ver Clientes</a>
+    <a href="/prestamos">Ver Prestamos</a>
+    <a href="/vencidos">Ver Vencidos</a>
+    <a href="/resumen">Ver Resumen</a>
+    """
+
 
 @app.route("/clientes")
 def ver_clientes():
