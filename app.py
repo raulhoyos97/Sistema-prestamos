@@ -1,4 +1,5 @@
 from flask import Flask
+from datetime import datetime
 import prestamos
 
 prestamos.cargar_datos()
@@ -21,6 +22,16 @@ def ver_prestamos():
     html = "<h1>Prestamos</h1>"
     for prestamo in prestamos.prestamos:
         html += f"<p>{prestamo['id_cliente']} - monto: {prestamo['monto']}</p>"
+    return html
+
+@app.route("/vencidos")
+def ver_vencidos():
+    hoy = datetime.now()
+    html = "<h1>Préstamos Vencidos</h1>"
+    for prestamo in prestamos.prestamos:
+        vencimiento = datetime.strptime(prestamo["vencimiento"], "%d/%m/%Y")
+        if vencimiento < hoy:
+            html += f"<p>Cliente ID: {prestamo['id_cliente']} | Monto: ${prestamo['monto']} | Venció: {prestamo['vencimiento']}</p>"
     return html
 
 if __name__ == "__main__":
