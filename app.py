@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from datetime import datetime
 import prestamos
 
@@ -8,13 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return """
-    <h1>Sistema de Préstamos</h1>
-    <a href="/clientes">Ver Clientes</a>
-    <a href="/prestamos">Ver Prestamos</a>
-    <a href="/vencidos">Ver Vencidos</a>
-    <a href="/resumen">Ver Resumen</a>
-    """
+    return render_template("inicio.html")
 
 
 @app.route("/clientes")
