@@ -44,5 +44,12 @@ def ver_resumen():
         total += prestamo["total"]
     return render_template("resumen.html", prestamos=prestamos.prestamos, total=total)
 
+
+@app.route("/contacto")
+def contacto(): 
+    return """ <h1>Email</h1> 
+    <p>Raulhoyos1234@gmail.com</p> """
+
+
 if __name__ == "__main__":
     app.run(debug=True)
