@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Vencidos</title>
+</head>
+<body>
+          <h1>Lista de Vencidos</h1>
+    {% for prestamo in prestamos %}
+    <p>{{ prestamo.id_cliente }} - monto: {{ prestamo.monto }} - Venció: {{ prestamo.vencimiento }}</p>
+    {% endfor %}
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

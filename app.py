@@ -13,39 +13,29 @@ def inicio():
 
 @app.route("/clientes")
 def ver_clientes():
-    html = "<h1>Lista de Clientes</h1>"
-    for cliente in prestamos.clientes:
-        html += f"<p>{cliente['nombre']} - Edad: {cliente['edad']}</p>"
-    return html
+    return render_template("clientes.html", clientes=prestamos.clientes)
 
 @app.route("/prestamos")
 def ver_prestamos():
-    html = "<h1>Prestamos</h1>"
-    for prestamo in prestamos.prestamos:
-        html += f"<p>{prestamo['id_cliente']} - monto: {prestamo['monto']}</p>"
-    return html
+    return render_template("prestamos.html", prestamos=prestamos.prestamos)
 
 @app.route("/vencidos")
 def ver_vencidos():
     hoy = datetime.now()
-    html = "<h1>Préstamos Vencidos</h1>"
+    vencidos = []
     for prestamo in prestamos.prestamos:
         vencimiento = datetime.strptime(prestamo["vencimiento"], "%d/%m/%Y")
         if vencimiento < hoy:
-            html += f"<p>Cliente ID: {prestamo['id_cliente']} | Monto: ${prestamo['monto']} | Venció: {prestamo['vencimiento']}</p>"
-    return html
+            vencidos.append(prestamo)
+    return render_template("vencidos.html", prestamos=vencidos)
 
 
 @app.route("/resumen")
 def ver_resumen():
-    html = "<h1>Resumen</h1>"
     total = 0
     for prestamo in prestamos.prestamos:
-        html += f"<p>{prestamo['id_cliente']} - monto: {prestamo['monto']}</p>"
         total += prestamo["total"]
-    html += f"<h2>Total general: ${total}</h2>"
-    return html
-
+    return render_template("resumen.html", prestamos=prestamos.prestamos, total=total)
 
 if __name__ == "__main__":
     app.run(debug=True)

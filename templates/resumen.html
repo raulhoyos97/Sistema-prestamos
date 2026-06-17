@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen</title>
+</head>
+<body>
+          <h1>Resumen</h1>
+    {% for prestamo in prestamos %}
+    <p>{{ prestamo.id_cliente }} - monto: {{ prestamo.monto }} - Venció: {{ prestamo.vencimiento }}</p>
+    {% endfor %}
+    <h2>Total general: ${{ total }}</h2>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>
