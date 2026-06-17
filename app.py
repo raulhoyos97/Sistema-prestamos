@@ -10,6 +10,13 @@ app = Flask(__name__)
 def inicio():
     return render_template("inicio.html")
 
+@app.route("/about")
+def about():
+    return """
+    <h1>Raul Hoyos</h1>
+    <p>Hola soy Raul, soy de Mérida Yucatán, quiero aprender Python, base de datos e IA</p>
+    """
+
 
 @app.route("/clientes")
 def ver_clientes():
